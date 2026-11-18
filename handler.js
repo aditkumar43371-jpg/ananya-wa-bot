@@ -70,6 +70,7 @@ export function createHandler({ askAgent, allowNumbers = new Set(), lidToPn = ne
     const self = selfIdentity(s);
     if (!self) return; // not logged in yet: answer nobody
     const isSelfChat = self.jids.has(jid);
+    log('incoming', jid.split('@')[1], isSelfChat ? 'self' : 'other', key.fromMe ? 'fromMe' : 'in', Object.keys(message).join(',').slice(0, 80));
 
     let from;
     if (isSelfChat) {
