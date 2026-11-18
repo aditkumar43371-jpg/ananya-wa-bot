@@ -1,0 +1,16 @@
+{
+  "name": "ananya-wa-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp linked-device bridge to the Ananya agent",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@whiskeysockets/baileys": "6.7.24",
+    "pino": "9.14.0"
+  }
+}
