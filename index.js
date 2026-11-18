@@ -10,7 +10,7 @@ const PAIR_NUMBER = (process.env.PAIR_NUMBER || '').replace(/\D/g, '');
 // Numbers (besides the self-chat) that may talk to the bot; everyone else is ignored.
 const ALLOW_NUMBERS = parseAllowList(process.env.ALLOW_NUMBERS);
 const PORT = Number(process.env.PORT) || 7860;
-const AUTH_DIR = './auth';
+const AUTH_DIR = process.env.AUTH_DIR || './auth';
 const log = (...a) => console.log(new Date().toISOString(), ...a);
 
 let sock = null;
@@ -61,7 +61,8 @@ async function start() {
     }
   });
   s.ev.on('messages.upsert', ({ messages, type }) => {
-    if (type !== 'notify') return;
+    if (type !== 'notify' && type !== 'append') return;
+    log('upsert', type, messages.length);
     for (const m of messages) handle(s, m).catch((e) => log('handler error:', e.message));
   });
 }
